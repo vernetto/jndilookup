@@ -5,9 +5,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
+	@Autowired
+	private Environment env;
+
+
 	@Autowired
 	@Qualifier("one")
 	PropertyHolder theProperty;
@@ -15,6 +20,10 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	@Qualifier("two")
 	PropertyHolder theProperty2;
+
+	@Autowired
+	@Qualifier("three")
+	PropertyHolder dbDataSource;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -24,5 +33,7 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println(theProperty);
 		System.out.println(theProperty2);
+		System.out.println("java.naming.factory.initial=" + env.getProperty("java.naming.factory.initial"));
+		System.out.println("dbDataSource=" + env.getProperty("dbDataSource"));
 	}
 }
