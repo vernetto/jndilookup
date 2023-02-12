@@ -14,8 +14,8 @@
     </bean>
 
 
-    <jee:jndi-lookup id="dbDataSource" jndi-name="jdbc/DatabaseName" expected-type="java.lang.String">
-        <jee:environment>java.naming.factory.initial=org.springframework.jndi.JndiObjectFactoryBean</jee:environment>
+    <jee:jndi-lookup id="dbDataSource" jndi-name="jdbc/DatabaseName" expected-type="java.lang.String" >
+        <jee:environment>java.naming.factory.initial=org.apache.naming.java.javaURLContextFactory</jee:environment>
     </jee:jndi-lookup>
 
     <bean id="three" name="three" class="com.example.demo.PropertyHolder">
